@@ -38,20 +38,29 @@ void setup(void) {
   
   server.on("/website", []() {
     String qr_str = server.arg("url");
-    draw_qrcode(EPD_BLACK, EPD_WHITE, qr_str);
-    server.send(200, "text/plain", "OK");
+    String displaytype_str = server.arg("displaytype");
+    bool isDisplaytype = displaytype_str.equals("yes") ? true : false;
+    
+    draw_qrcode(EPD_BLACK, EPD_WHITE, qr_str, isDisplaytype, "Link");
+    server.send(200, "text/plain", "ok");
   });
 
   server.on("/wifi", []() {
     String qr_str = "WIFI:T:" + server.arg("auth_type") + ";S:" + server.arg("ssid") + ";P:" + server.arg("passwd") + ";;";
-    draw_qrcode(EPD_BLACK, EPD_WHITE, qr_str);
-    server.send(200, "text/plain", "OK");
+    String displaytype_str = server.arg("displaytype");
+    bool isDisplaytype = displaytype_str.equals("yes") ? true : false;
+    
+    draw_qrcode(EPD_BLACK, EPD_WHITE, qr_str, isDisplaytype, "Wifi");
+    server.send(200, "text/plain", "ok");
   });
 
   server.on("/plaintext", []() {
     String qr_str = server.arg("content");
-    draw_qrcode(EPD_BLACK, EPD_WHITE, qr_str);
-    server.send(200, "text/plain", "OK");
+    String displaytype_str = server.arg("displaytype");
+    bool isDisplaytype = displaytype_str.equals("yes") ? true : false;
+    
+    draw_qrcode(EPD_BLACK, EPD_WHITE, qr_str, isDisplaytype, "Text");
+    server.send(200, "text/plain", "ok");
   });
 
   
@@ -77,7 +86,7 @@ void draw_text(String text) {
 }
 
 // Draw QRCode
-void draw_qrcode(uint16_t color1, uint16_t color2, String qr_string) {
+void draw_qrcode(uint16_t color1, uint16_t color2, String qr_string, bool isDisplayType, String type_string) {
   EPD.clearBuffer();
   EPD.fillScreen(EPD_WHITE);
   
@@ -87,8 +96,12 @@ void draw_qrcode(uint16_t color1, uint16_t color2, String qr_string) {
 
   int offset_x = 74;
   int offset_y = 11;
-  int p_width = 3;
-    
+  int p_width  = 3;
+  
+  if (isDisplayType) {
+    offset_x = 20;
+  }
+
   for (int y = 0; y < qrcode.size; y++) {
     for (int x = 0; x < qrcode.size; x++) {
       int new_x = offset_x + (x * p_width);
@@ -100,6 +113,13 @@ void draw_qrcode(uint16_t color1, uint16_t color2, String qr_string) {
           EPD.fillRect( new_x, new_y, p_width, p_width, color2);
       }
     }
+  }
+
+  if (isDisplayType) {
+    EPD.setTextColor(color1);
+    EPD.setTextSize(2);
+    EPD.setCursor(165, 52);
+    EPD.print(type_string);
   }
   
   EPD.display();

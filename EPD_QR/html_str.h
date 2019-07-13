@@ -62,7 +62,8 @@ const char *homepage_html = R""""(
 </div>
 <div id="WebSite" class="tabcontent">
   <form action="/website" method="get">
-    URL : <input type="text" name="url"><br><br>
+    URL : <input type="text" name="url" size="30" value="http://"><br><br>
+    <input type="checkbox" name="displaytype" value="yes"> Display type<br><br>
     <input type="submit" class="updatebutton" value="Update">
   </form>
 </div>
@@ -74,6 +75,7 @@ const char *homepage_html = R""""(
     <input type="text" name="ssid"><br><br>
     Password :<br>
     <input type="text" name="passwd"><br><br>
+    <input type="checkbox" name="displaytype" value="yes"> Display type<br><br>
     <input type="submit" class="updatebutton" value="Update">
   </form>
 </div>
@@ -81,6 +83,7 @@ const char *homepage_html = R""""(
   <form action="/plaintext" method="get">
     Content :<br>
     <textarea name="content" rows="6" cols="35"></textarea><br><br>
+    <input type="checkbox" name="displaytype" value="yes"> Display type<br><br>
     <input type="submit" class="updatebutton" value="Update">
   </form>
 </div>
