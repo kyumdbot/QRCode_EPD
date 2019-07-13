@@ -69,7 +69,7 @@
 
 ![Connect to AP](imgs/connect_ap.jpg)
 
-接著要開啟 QRCode Setup 網頁。開啟網頁瀏覽器，並輸入 Server 的 IP (Server IP 會在裝置啟動時顯示在 ePaper 上)：
+接著要開啟 QRCode Setup 網頁。開啟網頁瀏覽器，並輸入 Server 的 IP (Server IP 會在裝置啟動時顯示在 ePaper 上)：
 
 ![Server's IP](imgs/server_ip.jpg)
 
