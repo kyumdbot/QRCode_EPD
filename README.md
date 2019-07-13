@@ -26,7 +26,7 @@
 
 1. 請先閱讀 [arduino-esp32](https://github.com/espressif/arduino-esp32) 的 README.md，照裡頭的步驟安裝好 ESP32 Board 套件。
 2. 然後到 [WEMOS wiki](https://wiki.wemos.cc/downloads) 裡下載 Serial port Driver，並安裝之。
-3. 把 D32 Pro 連接到電腦上，然後下載或是克隆本 Repo，並用 Arduino IDE 開啟 `EPD_QR.ino`。
+3. 把 D32 Pro 連接到電腦上，然後克隆或是下載本 Repo，並用 Arduino IDE 開啟 `EPD_QR.ino`。
 4. 點選 Arduino IDE 選單 -> Sketch -> Include Library -> Manage Libraries...，然後搜尋並安裝以下程式庫：
 
     - Adafruit GFX Library (by Adafruit)
